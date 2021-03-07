@@ -1,27 +1,39 @@
 pipeline {
-  agent {
-    docker {
-      image 'jenkinsmaven:latest'
-    }
-  }
-
-  stages {
-    stage('SCM') {
-        steps {
-      		checkout([$class: 'GitSCM', branches: [[name: '*/main']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/executeautomation/SeleniumWithCucucumber']]])
-	      }
-    }
-
-    stage('Build') {
-          steps {
-               sh 'mvn compile'
-          }
-    }
-
-    stage('Publish') {
-          steps {
-    	      sh 'mvn test'
-          }
-    }
-  }
-}
+		agent any
+	 
+		stages {
+			stage('Build') {
+				steps {
+					sh '''
+						./jenkins/build/mvn.sh mvn -B -DskipTests clean package
+						./jenkins/build/build.sh
+					'''
+				}
+				post {
+					success {
+					   archiveArtifacts artifacts: 'java-app/target/*.jar', fingerprint: true
+					}
+				}
+			}
+			stage('Test') {
+				steps {
+					sh './jenkins/test/mvn.sh mvn test'
+				}
+				post {
+					always {
+						junit 'java-app/target/surefire-reports/*.xml'
+					}
+				}
+			}
+			stage('Push') {
+				steps {
+					sh './jenkins/push/push.sh'
+				}
+			}
+			stage('Deploy') {
+				steps {
+					sh './jenkins/deploy/deploy.sh'
+					}
+				}
+			}
+		}
