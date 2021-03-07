@@ -1,40 +1,27 @@
-#!/usr/bin/env groovy
 pipeline {
-  agent any
+  agent {
+    docker {
+      image 'jenkinsmaven:latest'
+    }
+  }
 
   stages {
-    stage("Build") {
-      steps {
-        sh 'mvn -v'
-      }
+    stage('SCM') {
+        steps {
+      		checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/executeautomation/SeleniumWithCucucumber']]])
+	      }
     }
 
-    stage("Testing") {
-      parallel {
-        stage("Unit Tests") {
-          agent { docker 'openjdk:7-jdk-alpine' }
+    stage('Build') {
           steps {
-            sh 'java -version'
+               sh 'mvn compile'
           }
-        }
-        stage("Functional Tests") {
-          agent { docker 'openjdk:8-jdk-alpine' }
-          steps {
-            sh 'java -version'
-          }
-        }
-        stage("Integration Tests") {
-          steps {
-            sh 'java -version'
-          }
-        }
-      }
     }
 
-    stage("Deploy") {
-      steps {
-        echo "Deploy!"
-      }
+    stage('Publish') {
+          steps {
+    	      sh 'mvn test'
+          }
     }
   }
 }
