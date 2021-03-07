@@ -31,15 +31,14 @@ pipeline {
         }
       }
       steps {
-        // using the Pipeline Maven plugin we can set maven configuration settings, publish test results, and annotate the Jenkins console
-        withMaven(options: [findbugsPublisher(), junitPublisher(ignoreAttachments: false)]) {
-          sh 'mvn clean findbugs:findbugs package'
+       sh echo 'Doneeeee'
+        touch WS.jar
         }
       }
       post {
         success {
           // we only worry about archiving the jar file if the build steps are successful
-          archiveArtifacts(artifacts: '**/target/*.jar', allowEmptyArchive: true)
+          archiveArtifacts(artifacts: '**/*.jar', allowEmptyArchive: true)
         }
       }
     }
