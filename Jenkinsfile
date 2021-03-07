@@ -1,45 +1,39 @@
+#!/usr/bin/env groovy
 pipeline {
-
-  /*
-   * Run everything on an existing agent configured with a label 'docker'.
-   * This agent will need docker, git and a jdk installed at a minimum.
-   */
   agent any
 
-  // using the Timestamper plugin we can add timestamps to the console log
-  options {
-    timestamps()
-  }
-
-  environment {
-    //Use Pipeline Utility Steps plugin to read information from pom.xml into env variables
-    IMAGE = readMavenPom().getArtifactId()
-    VERSION = readMavenPom().getVersion()
-  }
-
   stages {
-    stage('Build') {
-      agent {
-        docker {
-          /*
-           * Reuse the workspace on the agent defined at top-level of Pipeline but run inside a container.
-           * In this case we are running a container with maven so we don't have to install specific versions
-           * of maven directly on the agent
-           */
-          reuseNode true
-          image 'maven:3.5.0-jdk-8'
-        }
-      }
+    stage("Build") {
       steps {
-       sh echo 'Doneeeee'
-        touch WS.jar
+        sh 'mvn -v'
+      }
+    }
+
+    stage("Testing") {
+      parallel {
+        stage("Unit Tests") {
+          agent { docker 'openjdk:7-jdk-alpine' }
+          steps {
+            sh 'java -version'
+          }
+        }
+        stage("Functional Tests") {
+          agent { docker 'openjdk:8-jdk-alpine' }
+          steps {
+            sh 'java -version'
+          }
+        }
+        stage("Integration Tests") {
+          steps {
+            sh 'java -version'
+          }
         }
       }
-      post {
-        success {
-          // we only worry about archiving the jar file if the build steps are successful
-          archiveArtifacts(artifacts: '**/*.jar', allowEmptyArchive: true)
-        }
+    }
+
+    stage("Deploy") {
+      steps {
+        echo "Deploy!"
       }
     }
   }
