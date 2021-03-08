@@ -10,7 +10,7 @@
 				}
 				post {
 					success {
-					   archiveArtifacts artifacts: './java-app/target/*.jar', fingerprint: true
+					   archiveArtifacts artifacts: './target/*.jar', fingerprint: true
 					}
 				}
 			  }
