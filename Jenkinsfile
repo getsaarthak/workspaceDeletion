@@ -5,7 +5,7 @@
 			stage('Build') {
 				steps {
 					sh '''
-						./java-app/mvn.sh mvn -B -DskipTests clean package
+						./mvn.sh mvn -B -DskipTests clean package
 					'''
 				}
 				post {
