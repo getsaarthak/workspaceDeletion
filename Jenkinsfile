@@ -5,8 +5,7 @@
 			stage('Build') {
 				steps {
 					sh '''
-						./jenkins/build/mvn.sh mvn -B -DskipTests clean package
-						./jenkins/build/build.sh
+						./jenkins-1/build/mvn.sh mvn -B -DskipTests clean package
 					'''
 				}
 				post {
