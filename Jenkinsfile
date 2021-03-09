@@ -10,7 +10,7 @@
 				}
 				post {
 					success {
-					   cleanWS()
+					   deleteDir()
 					}
 				}
 			  }
