@@ -1,6 +1,6 @@
 		pipeline {
 		agent any
-	 
+	 	def current_workspace = env.WORKSPACE
 		stages {
 			stage('Build') {
 				steps {
@@ -11,7 +11,7 @@
 				post {
 					success {
 					   sh '''
-					   echo "Deleting Workspace"
+					   echo "Deleting Workspace: $current_workspace"
 					   echo "BUILD_NUMBER	: $BUILD_NUMBER"
 					   echo "BUILD_ID		: $BUILD_ID"
 					   echo "BUILD_URL		: $BUILD_URL"
