@@ -1,6 +1,8 @@
+		#!/usr/bin/env groovy
+		def current_workspace = env.WORKSPACE
 		pipeline {
 		agent any
-	 	def current_workspace = env.WORKSPACE
+	 
 		stages {
 			stage('Build') {
 				steps {
