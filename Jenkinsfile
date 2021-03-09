@@ -10,7 +10,9 @@
 				}
 				post {
 					success {
-					   sh echo "Deleting Workspace"
+					   sh '''
+					   echo "Deleting Workspace"
+					   '''
 					   //deleteDir()
 					}
 				}
