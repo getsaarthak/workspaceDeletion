@@ -1,5 +1,4 @@
-		#!/usr/bin/env groovy
-		def current_workspace = env.WORKSPACE
+		current_workspace = $WORKSPACE
 		pipeline {
 		agent any
 	 
