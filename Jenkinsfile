@@ -1,6 +1,5 @@
 		pipeline {
 		agent any
-	 	current_workspace = $WORKSPACE
 		stages {
 			stage('Build') {
 				steps {
