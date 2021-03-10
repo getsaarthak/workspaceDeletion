@@ -1,4 +1,5 @@
 
+		def MWS = "Mukesh"
 		pipeline {
 		agent any
 		environment {
@@ -14,7 +15,7 @@
 				post {
 					success {
 					   sh '''
-					   echo "Printing my Workspare: $MyWS"
+					   echo "Printing my Workspare: $MyWS is ${MWS}"
 					   echo "Deleting Workspace: $current_workspace"
 					   echo "BUILD_NUMBER	: $BUILD_NUMBER"
 					   echo "BUILD_ID		: $BUILD_ID"
