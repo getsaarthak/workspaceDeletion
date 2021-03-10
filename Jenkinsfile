@@ -5,7 +5,7 @@
 				any {
 					script {
                					sh "echo Nishat and my Workspace is : ${MWS}"
-						temp_var = $MWS
+						temp_var = "$MWS"
 					}
 				}
 			}
