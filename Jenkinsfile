@@ -1,5 +1,5 @@
 
-		def env.MWS = $WORKSPACE
+		def MWS = '$WORKSPACE'
 		pipeline {
 		agent any
 		environment {
@@ -11,6 +11,9 @@
 					sh '''
 						./mvn.sh mvn -B -DskipTests clean package
 					'''
+					script {
+               					sh "echo ${MWS}"
+           				}
 				}
 				post {
 					success {
