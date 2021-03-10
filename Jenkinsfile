@@ -1,7 +1,9 @@
-		#!/usr/bin/env groovy
 
 		pipeline {
 		agent any
+		environment {
+        	    MyWS = $WORKSPACE
+    		}
 		stages {
 			stage('Build') {
 				steps {
