@@ -20,7 +20,7 @@
 					'''
 					script {
                					sh "echo Mukesh Workspace is : ${MWS}"
-						sh "echo temp_var is $temp_var"
+						sh "echo temp_var is ${temp_var}"
            				}
 				}
 				post {
