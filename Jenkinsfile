@@ -1,7 +1,11 @@
 
 		def MWS = '$WORKSPACE'
 		pipeline {
-		agent any
+			agent any {
+			script {
+               		sh "echo Mukesh Workspace is : ${MWS}"
+			}
+		}
 		environment {
         	    MyWS = "/tmp$WORKSPACE"
     		}
