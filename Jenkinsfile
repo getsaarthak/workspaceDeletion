@@ -1,6 +1,6 @@
 
 		def MWS = '$WORKSPACE'
-		pipeline {med
+		pipeline {
 			agent {
 				any {
 					script {
