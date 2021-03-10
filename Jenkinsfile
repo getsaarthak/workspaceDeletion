@@ -1,10 +1,10 @@
 
 		def MWS = '$WORKSPACE'
-		pipeline {
+		pipeline {med
 			agent {
 				any {
 					script {
-               					sh "echo Nishat and my Workspace is : ${WORKSPACE}"
+               					sh "echo Nishat and my Workspace is : ${MWS}"
 					}
 				}
 			}
