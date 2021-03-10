@@ -2,7 +2,7 @@
 		pipeline {
 		agent any
 		environment {
-        	    MyWS = "/tmp/$WORKSPACE"
+        	    MyWS = "/tmp$WORKSPACE"
     		}
 		stages {
 			stage('Build') {
