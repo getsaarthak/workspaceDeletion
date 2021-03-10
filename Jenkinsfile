@@ -1,5 +1,5 @@
 
-		def env.MWS = "$WORKSPACE"
+		def env.MWS = $WORKSPACE
 		pipeline {
 		agent any
 		environment {
