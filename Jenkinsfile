@@ -1,5 +1,5 @@
 
-		def env.MWS = "Mukesh"
+		def env.MWS = "${env.BRANCH_NAME}"
 		pipeline {
 		agent any
 		environment {
