@@ -1,5 +1,5 @@
 
-		def MWS = "${env.BRANCH_NAME}"
+		def MWS = "${env.WORKSPACE}"
 		pipeline {
 		agent any
 		environment {
