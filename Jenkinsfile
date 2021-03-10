@@ -12,7 +12,7 @@
 						./mvn.sh mvn -B -DskipTests clean package
 					'''
 					script {
-               					sh "echo Mukesh's Workspace is : ${MWS}"
+               					sh "echo Mukesh Workspace is : ${MWS}"
            				}
 				}
 				post {
