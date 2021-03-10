@@ -4,7 +4,7 @@
 			agent {
 				any {
 					script {
-               					sh "echo Mukesh Workspace is : ${MWS}"
+               					sh "echo Workspace is : ${MWS}"
 					}
 				}
 			}
