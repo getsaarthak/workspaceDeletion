@@ -5,6 +5,7 @@
 				any {
 					script {
                					sh "echo Nishat and my Workspace is : ${MWS}"
+						temp_var = $MWS
 					}
 				}
 			}
@@ -19,6 +20,7 @@
 					'''
 					script {
                					sh "echo Mukesh Workspace is : ${MWS}"
+						sh "echo temp_var is $temp_var"
            				}
 				}
 				post {
