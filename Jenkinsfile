@@ -12,13 +12,13 @@
 						./mvn.sh mvn -B -DskipTests clean package
 					'''
 					script {
-               					sh "echo ${MWS}"
+               					sh "echo Mukesh's Workspace is : ${MWS}"
            				}
 				}
 				post {
 					success {
 					   sh '''
-					   echo "Printing my Workspare: $MyWS is ${env.MWS}"
+					   echo "Printing my Workspare: $MyWS"
 					   echo "Deleting Workspace: $current_workspace"
 					   echo "BUILD_NUMBER	: $BUILD_NUMBER"
 					   echo "BUILD_ID		: $BUILD_ID"
