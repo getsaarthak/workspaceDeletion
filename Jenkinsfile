@@ -4,8 +4,8 @@
 			agent {
 				any {
 					script {
-               					sh "echo Nishat and my Workspace is : ${MWS}"
-						temp_var = "${MWS}"
+               					sh "echo Nishat and my Workspace is : ${WORKSPACE}"
+						temp_var = "${WORKSPACE}"
 					}
 				}
 			}
