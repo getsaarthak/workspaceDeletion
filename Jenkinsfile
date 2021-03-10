@@ -1,5 +1,5 @@
 
-		def MWS = "${WORKSPACE}"
+		def MWS = "$WORKSPACE"
 		pipeline {
 		agent any
 		environment {
