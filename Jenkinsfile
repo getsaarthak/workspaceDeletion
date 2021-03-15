@@ -1,12 +1,13 @@
 #!/usr/bin/env groovy
+def mvnHome = tool 'M3'
 pipeline {
     // run on jenkins nodes tha has java 8 label
     //agent { label 'master' }
     agent any
-    tools { 
-        maven 'M3'
-        jdk 'java 8'
-    }
+    //tools { 
+    //    maven 'M3'
+   //     jdk 'java 8'
+   // }
     // global env variables
     environment {
         EMAIL_RECIPIENTS = 'mahmoud.romeh@test.com'
