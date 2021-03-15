@@ -4,7 +4,7 @@ pipeline {
     //agent { label 'master' }
     agent any
     tools { 
-        maven 'Maven 3'
+        maven 'M3'
         jdk 'java 8'
     }
     // global env variables
