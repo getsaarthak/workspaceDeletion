@@ -4,7 +4,7 @@ pipeline {
     //agent { label 'master' }
     agent any
     tools { 
-        maven 'maven 3.3.9' 
+        maven Maven 3.3.9
     }
     // global env variables
     environment {
