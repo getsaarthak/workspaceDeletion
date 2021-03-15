@@ -1,7 +1,7 @@
 #!/usr/bin/env groovy
 pipeline {
     // run on jenkins nodes tha has java 8 label
-    agent { label 'master' }
+    agent { label 'java8' }
     // global env variables
     environment {
         EMAIL_RECIPIENTS = 'mahmoud.romeh@test.com'
@@ -15,7 +15,7 @@ pipeline {
                     // Get the Maven tool.
                     // ** NOTE: This 'M3' Maven tool must be configured
                     // **       in the global configuration.
-                    echo 'Pulling...' + env.GIT_BRANCH
+                    echo 'Pulling...' + env.BRANCH_NAME
                     def mvnHome = tool 'Maven 3.3.9'
                     if (isUnix()) {
                         def targetVersion = getDevVersion()
@@ -132,7 +132,7 @@ pipeline {
         stage('Release and publish artifact') {
             when {
                 // check if branch is master
-                branch 'main'
+                branch 'origin/main'
             }
             steps {
                 // create the release version then create a tage with it , then push to nexus releases the released jar
@@ -161,7 +161,7 @@ pipeline {
         stage('Deploy to Acceptance') {
             when {
                 // check if branch is master
-                branch 'main'
+                branch 'origin/main'
             }
             steps {
                 script {
@@ -192,7 +192,7 @@ pipeline {
         stage('ACC E2E tests') {
             when {
                 // check if branch is master
-                branch 'main'
+                branch 'origin/main'
             }
             steps {
                 // give some time till the deployment is done, so we wait 45 seconds
